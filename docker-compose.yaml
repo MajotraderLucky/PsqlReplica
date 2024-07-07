@@ -17,3 +17,9 @@ services:
       - "postgres"
       - "-c"
       - "config_file=/etc/postgresql/postgresql.conf"
+    networks:
+      - psql2replicas_default
+
+networks:
+  psql2replicas_default:
+    external: true
