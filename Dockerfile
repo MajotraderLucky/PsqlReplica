@@ -1,7 +1,11 @@
 FROM postgres:latest
 
 # Установка необходимых пакетов (если нужно)
-RUN apt-get update && apt-get install -y nano vim
+RUN apt-get update && apt-get install -y \
+    nano \
+    vim \
+    telnet \
+    && rm -rf /var/lib/apt/lists/*  # Очистка кэша apt
 
 # Установка переменных окружения (если нужно)
 ENV POSTGRES_PASSWORD=psql_pass
