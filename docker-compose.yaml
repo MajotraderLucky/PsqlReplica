@@ -1,0 +1,19 @@
+version: '3.1'
+
+services:
+  db_replica:
+    image: my_replica_postgres
+    restart: always
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./data_replica:/var/lib/postgresql/data
+      - ./postgresql_replica.conf:/etc/postgresql/postgresql.conf
+    environment:
+      POSTGRES_PASSWORD: psql_pass
+      POSTGRES_USER: master_user
+      POSTGRES_DB: master_db
+    command:
+      - "postgres"
+      - "-c"
+      - "config_file=/etc/postgresql/postgresql.conf"
